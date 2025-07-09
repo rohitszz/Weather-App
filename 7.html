@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        .wrapper{
+            height:101vh;
+            width: 100vw;
+            background:linear-gradient(to right bottom,rgb(6, 33, 63),rgba(0, 91, 165, 0.954));   
+        }
+        .container{
+            margin: 0 auto;
+            height:600px;
+            width:50rem;
+        }
+        .current-tab{
+            background-color: rgba(186, 190, 210, 0.527);
+            border-radius:4px;
+        }
+        [grant-loc-container]{
+            display: none;
+        }
+        [grant-loc-container].active{
+            display:flex;
+        }
+        [data-form]{
+            display: none;
+        }
+        [data-form].active{
+            display: flex;
+        }
+        [user-info-container]{
+            display: none;
+        }
+        [user-info-container].active{
+            display:flex;
+        }
+        [loading-container]{
+            display:none;
+        }   
+        [loading-container].active{
+            display:flex;
+        }
+        .btn{
+            background-color:rgba(58, 174, 135, 0.509);
+            }
+        .cardcolor{
+            background-color: rgba(255, 255, 255, 0.178);
+        }
+        .input{
+            appearance: none;
+            background-color: rgba(255, 255, 255, 0.322);
+            padding-left: 15px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-right: 15px;
+            width:30rem;
+            height:40px;
+            border-radius: 10px;
+        }
+        .formbtn{
+            background-color: rgba(255, 255, 255, 0.205);
+            border-radius: 20rem;
+            height:40px;
+            width:40px;
+        }
+         </style>
+
+</head>
+<body>
+<div class="wrapper ">
+
+        <div class="text-white text-[35px] translate-y-8" style="width: fit-content; font-weight:500; margin: 0 auto;">WEATHER APP</div>
+
+        
+        <div class="container translate-y-13">
+
+            <div class="flex flex-row  text-white justify-evenly my-10 -mx-24 ">
+                <div class="yourW text-[17px] font-semibold tracking-[2px] h-7 w-32.5 flex justify-center items-center cursor-pointer" data-weather><div class="text-[13px] ">Your Weather</div></div>
+                <div class="text-[17px] font-semibold tracking-[2px] flex justify-center items-center h-7 w-37 cursor-pointer" data-search><div class="text-[13px]">Search Weather</div></div>
+            </div>
+             
+            <div class=" h-[494px] w-[797px] margin-0 auto text-white" >
+
+                <div class="grantloc flex justify-between items-center flex-col gap-y-10" grant-loc-container>
+                    <img src="https://w7.pngwing.com/pngs/345/54/png-transparent-green-location-icon-illustration-computer-icons-google-maps-google-map-maker-adress-angle-leaf-grass.png" class="h-[50x] w-[70px] " alt="Weather Icon"> 
+                    <div class="">Grant Location Acess</div>
+                    <div class="">Allow Acess To Get Weather Information</div>
+                    <button class="btn cursor-pointer flex justify-around items-center border-1 h-10 w-25 rounded-[10px] translate-y-10" data-grantaccess><div class="text-[13px]">Grant Access<div></button>
+                </div>
+
+
+
+                <form class="text-white flex justify-center items-center gap-x-5" data-form>
+                    <input class="input " data-input placeholder="search for city"></input>
+                    <button class="formbtn flex justify-center items-center">
+                        <img src="https://codehelp-weather-app.netlify.app/assets/search.png" heght="20px" width="20px">
+                    </button>
+                </form>
+               
+
+                <!--LOADING CONTAINER-->
+                <div class="flex flex-col justify-center items-center" loading-container>
+                    <img src="https://codehelp-weather-app.netlify.app/assets/loading.gif"  height="100px" width="100px">
+                    <p class="text-white">Loading</p>
+                </div>
+
+                <!--SEARCH WEATHER INFO-->
+                <div class="flex flex-col justify-between items-center gap-y-5" user-info-container>
+
+                    <div class="flex flex-row items-center  justify-between">
+                        <p data-cityName class="text-[30px]"></p>
+                        <img src="" data-cityIcon class="h-7 w-9 translate-y-1 translate-x-2" >
+                    </div>
+
+                    <p data-weatherDesc class="text-[20px]"></p>
+
+                    <img src="http://openweathermap.org/img/w/04d.png" data-weatherIcon class="h-15 w-15 translatey-5">
+
+                    <p data-temp class="text-[40px] font-bold">  </p>
+
+                    <div class="flex flex-row gap-x-10 justify-between items-center my-10" >
+                        <div class="cardcolor flex justify-between items-center flex-col h-35 w-50 rounded-[7px] text-[23px]">
+                            <img src="https://codehelp-weather-app.netlify.app/assets/wind.png" height="40px" width="50px" class="translate-y-2">
+                            <p class="-translate-y-1.5">WINDSPEED</p>
+                            <p data-windspeed class="-translate-y-5"></p>
+                        </div>
+                        <div class="cardcolor flex justify-between items-center flex-col h-35 w-50 rounded-[7px] text-[23px]">
+                            <img src="https://codehelp-weather-app.netlify.app/assets/humidity.png" class="h-10 w-10 translate-y-2"> 
+                            <p>HUMIDITY</p>
+                            <p data-humidity class="-translate-y-5"></p>
+                        </div>
+                        <div class="cardcolor flex justify-between items-center flex-col rounded-[7px] h-35 w-50 text-[23px]">
+                            <img src="https://codehelp-weather-app.netlify.app/assets/cloud.png" class="h-10 w-10 translate-y-2">
+                            <p>CLOUDS</p>
+                            <p data-clouds class="-translate-y-5"></p>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+
+
+
+            </div>
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+    
+<script src="7.js"></script>
+</body>
+
+</html>
